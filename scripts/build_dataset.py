@@ -5,9 +5,10 @@
   cohort_72h.csv / cohort_24h.csv   每个 stay 一行
   列：人口学、生命体征、化验、评分、合并症、干预、结局
 """
+import os
 import pandas as pd, numpy as np, os, glob
 
-B = r"C:\Users\stay1\Desktop\机器学习\脓毒症+谵妄+COPD"
+B = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 OUT = os.path.join(B, "重建", "data")
 os.makedirs(OUT, exist_ok=True)
 
