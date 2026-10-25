@@ -1,8 +1,13 @@
 ## ============ 重建版：全套统计表 ============
 suppressPackageStartupMessages({library(survival); library(rms)})
 options(warn=-1)
-B <- "C:/Users/stay1/Desktop/机器学习/脓毒症+谵妄+COPD/重建"
-setwd(B); OUT <- file.path(B, "tables"); dir.create(OUT, showWarnings=FALSE)
+# Resolve the repository root whether this file is run with Rscript or source()d
+.this_file <- tryCatch(
+  normalizePath(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value = TRUE)[1])),
+  error = function(e) NA_character_)
+if (is.na(.this_file)) .this_file <- normalizePath(sys.frame(1)$ofile)
+B <- normalizePath(file.path(dirname(.this_file), ".."))
+setwd(B); OUT <- file.path(B, "output"); dir.create(OUT, showWarnings=FALSE)
 d <- read.csv("data/cohort_all.csv", encoding="UTF-8", fileEncoding="UTF-8")
 d$crrt_flag <- as.numeric(d$crrt_flag); d$crrt_flag[is.na(d$crrt_flag)] <- 0
 d$t <- d$t90; d$e <- d$death90
