@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# Generated outputs — reproduce with the scripts
+output/*.csv
+output/*.png
+output/*.tif
+output/*.pdf
+output/*.eps
+output/figures/
+
+# Data obtained under the PhysioNet data use agreement — never commit
+data/cohort_all.csv
+data/cohort_*.csv
+*.csv
+!data/cohort_all_TEMPLATE.csv
+
+# Office temp files
+~$*
+.DS_Store
+Thumbs.db
