@@ -1,6 +1,11 @@
 # 协变量共线性诊断（VIF）
 suppressPackageStartupMessages({library(survival)})
-B <- "C:/Users/stay1/Desktop/机器学习/脓毒症+谵妄+COPD/重建"
+# Resolve the repository root whether this file is run with Rscript or source()d
+.this_file <- tryCatch(
+  normalizePath(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value = TRUE)[1])),
+  error = function(e) NA_character_)
+if (is.na(.this_file)) .this_file <- normalizePath(sys.frame(1)$ofile)
+B <- normalizePath(file.path(dirname(.this_file), ".."))
 d <- read.csv(file.path(B, "data/cohort_all.csv"), fileEncoding = "UTF-8-BOM")
 d <- d[d$win72 == 1, ]
 COV <- c("admission_age","male","race_white","myocardial_infarct","congestive_heart_failure",
