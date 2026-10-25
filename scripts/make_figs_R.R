@@ -7,9 +7,14 @@ suppressPackageStartupMessages({
   library(dplyr); library(grid); library(patchwork)
 })
 
-B   <- "C:/Users/stay1/Desktop/机器学习/脓毒症+谵妄+COPD/重建"
-FIG <- file.path(B, "figures")
-TAB <- file.path(B, "tables")
+# Resolve the repository root whether this file is run with Rscript or source()d
+.this_file <- tryCatch(
+  normalizePath(sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value = TRUE)[1])),
+  error = function(e) NA_character_)
+if (is.na(.this_file)) .this_file <- normalizePath(sys.frame(1)$ofile)
+B <- normalizePath(file.path(dirname(.this_file), ".."))
+FIG <- file.path(B, "output", "figures")
+TAB <- file.path(B, "output")
 dir.create(FIG, showWarnings = FALSE)
 
 MM <- 1/25.4
