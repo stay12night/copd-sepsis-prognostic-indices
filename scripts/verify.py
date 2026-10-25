@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os, re
 from docx import Document
-B = r"C:\Users\stay1\Desktop\机器学习\脓毒症+谵妄+COPD\重建"
+B = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 out = []
 def W(s): out.append(str(s))
 
